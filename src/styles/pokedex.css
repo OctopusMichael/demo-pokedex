@@ -328,7 +328,7 @@ ul{
 .pokemon-input{
   font-family: system-ui;
   padding: 10px;
-  background-color: var(--orange);
+  background-color: rgb(240, 105, 105);
   border: none;
   border: 1px solid black;
   border-radius: 10px;
@@ -342,7 +342,8 @@ ul{
 }
 
 .pokemon-input:focus::-webkit-input-placeholder{
-  color: rgba(255,255,255, 1);
+  /* color: rgba(255,255,255, 1); */
+  color: white;
 
 }
 .pokemon-input::-webkit-input-placeholder {

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import PokedexForm from "./PokedexForm";
 import PokedexScreen from "./PokedexScreen";
 
 function Pokedex() {
@@ -6,17 +7,27 @@ function Pokedex() {
     name: "",
     avatar: "",
     stats: [],
+    id : 0,
   });
   //const [loading, setLoading] = useState(true);
   const RandomId = Math.floor(Math.random() * 1000 + 1);
   const [pokemonId, setPokemonId] = useState(RandomId);
 
   const handleRight = () => {
-    setPokemonId(pokemonId + 1);
+    if (typeof pokemonId == 'string'){
+      setPokemonId(pokemon.id + 1 );
+    }else{
+      setPokemonId(pokemon.id  + 1)
+    }
   };
   const handleLeft = () => {
-    setPokemonId(pokemonId - 1);
+    if(typeof pokemonId == 'string'){
+      setPokemonId(pokemon.id - 1)
+    }else{
+      setPokemonId(pokemon.id - 1)
+    }
   };
+    
   const handleRestar = () => {
     setPokemonId(RandomId);
   };
@@ -31,6 +42,7 @@ function Pokedex() {
         name: data.name,
         avatar: data.sprites.front_default,
         stats: data.stats,
+        id : data.id
       });
     };
     getData();
@@ -39,6 +51,7 @@ function Pokedex() {
   console.log(pokemon.name);
   console.log(pokemon.avatar);
   console.log(pokemon.stats);
+  console.log(pokemon.id);
   return (
     <div className="pokedex">
       <div className="pokedex-left">
@@ -53,16 +66,11 @@ function Pokedex() {
         </div>
         <div className="pokedex-left-bottom">
           <div className="pokedex-left-bottom-lights">
-            <button onClick={handleRestar} className="light is-blue is-medium">
-              ⭯
-            </button>
-            <button onClick={handleLeft} className="light is-orange is-large">
-              ⪡
-            </button>
-            <button onClick={handleRight} className="light is-green is-large">
-              ⪢
-            </button>
+            <button onClick={handleRestar} className="light is-blue is-medium">⭯</button>
+            <button onClick={handleLeft} className="light is-orange is-large">⪡</button>
+            <button onClick={handleRight} className="light is-green is-large">⪢</button>
           </div>
+          <PokedexForm setPokemonId ={setPokemonId}/>
         </div>
       </div>
       <div className="pokedex-right-front" />
